@@ -99,7 +99,7 @@ void inhale ()
   }
 }
 
-// *********** post inhale pause ***********
+// *********** Post Inhale ***********
 void postInhalePause ()
 {
   pauseTimer = millis();
@@ -112,7 +112,7 @@ void postInhalePause ()
 }
 
 
-// *********** exhale ***********
+// *********** Exhale ***********
 void exhale()
 {
   unsigned long revTimer = millis();   // log time in ms
@@ -137,7 +137,7 @@ void exhale()
 }
 
 
-// *********** post exhale pause ***********
+// *********** Post Exhale ***********
 void postExhalePause()
 {
   while (millis() - lastBreathTime < breathPeriod)                     // dwell
@@ -150,7 +150,7 @@ void postExhalePause()
 
 
 
-// ****** drive motors ******
+// ****** Motor Driver ******
 void setMotor1Speed(int M1speed)
 {
   if (M1speed < 0) {
