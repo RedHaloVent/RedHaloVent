@@ -11,7 +11,7 @@ ArduinoMotorShieldR3 md;
 static long accumulator = md.getM1CurrentMilliamps()*256;     // delay needed to smooth initial motor current spike
 
 
-/************************ reads an analogue input **************************/
+//reads current
 int getCurrentM1()
 {
 #define FILTERK 256
@@ -55,7 +55,7 @@ int default_TCT = (60 / default_RR) * 1000; //RR to TCT 3 sec as default
 void setup()
 {
  
-  Serial.begin(115200);
+  Serial.begin(9600);
    md.init();
 
   // set up motor pins
@@ -94,7 +94,6 @@ void inhale ()
       }
     }
     setMotor1Speed(mSpeed);
-    Serial.print("forward , ");      // we might not need this
     Serial.println(current);          // displays current
     current = getCurrentM1();
   }
@@ -107,7 +106,6 @@ void postInhalePause ()
   while (millis() - pauseTimer < postInhaleDwell)                     // dwell
   {
     setMotor1Speed(0);
-    //digitalWrite(9, HIGH);          // apply brake DON'T USE
     Serial.print("paused ");
     Serial.println(current);
   }
@@ -163,5 +161,5 @@ void setMotor1Speed(int M1speed)
     digitalWrite(DIR_A, HIGH);
   }
   if (M1speed > 400) M1speed = 400;  // Max PWM dutycycle
-  analogWrite(PWM_A, M1speed * 51 / 80); // default to using analogWrite, mapping 400 to 255
+  analogWrite(PWM_A, M1speed * 51 / 80); // default to using analogWrite, mapping 400 to 255. Not sure what this is?
 }
